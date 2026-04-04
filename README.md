@@ -1,4 +1,4 @@
-# dynamic_util
+# dynamic_layouts
 
 A lightweight, dependency-free Flutter package for building fluid, heavily responsive, adaptive UI rendering across mobile, tablet, and desktop screens natively. 
 
@@ -11,7 +11,7 @@ Built on a modern, strictly reactive `InheritedWidget` architecture (`AdaptiveSc
 Inject `AdaptiveScope` at the application root passing a continuous `ScreenConfig.watch(context)`. This creates a unified configuration reacting to `MediaQuery` bounds across the entire Flutter ecosystem natively.
 
 ```dart
-import 'package:dynamic_util/dynamic_util.dart';
+import 'package:dynamic_layouts/dynamic_layouts.dart';
 
 class MyApp extends StatelessWidget {
   @override

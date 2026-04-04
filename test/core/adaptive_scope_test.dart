@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:dynamic_util/dynamic_util.dart';
+import 'package:dynamic_layouts/dynamic_layouts.dart';
 
 void main() {
   testWidgets('AdaptiveScope provides valid ScreenConfig to children',

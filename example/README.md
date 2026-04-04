@@ -1,4 +1,4 @@
-# dynamic_util_example
+# dynamic_layouts_example
 
 A new Flutter project.
 

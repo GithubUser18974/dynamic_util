@@ -1,7 +1,7 @@
-name: dynamic_util
+name: dynamic_layouts
 description: A lightweight, dependency-free Flutter package for adaptive UI rendering across mobile, tablet, and desktop screens.
 version: 0.2.0
-homepage: https://github.com/dynamic_util
+homepage: https://github.com/dynamic_layouts
 
 environment:
   sdk: '>=3.5.0 <4.0.0'

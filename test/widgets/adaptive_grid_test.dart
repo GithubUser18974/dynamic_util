@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:dynamic_util/dynamic_util.dart';
+import 'package:dynamic_layouts/dynamic_layouts.dart';
 
 void main() {
   testWidgets('AdaptiveGrid adjusts crossAxisCount based on breakpoints', (tester) async {

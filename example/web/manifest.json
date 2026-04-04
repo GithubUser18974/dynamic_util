@@ -1,6 +1,6 @@
 {
-    "name": "dynamic_util_example",
-    "short_name": "dynamic_util_example",
+    "name": "dynamic_layouts_example",
+    "short_name": "dynamic_layouts_example",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

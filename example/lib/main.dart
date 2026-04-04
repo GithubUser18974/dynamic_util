@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dynamic_util/dynamic_util.dart';
+import 'package:dynamic_layouts/dynamic_layouts.dart';
 
 void main() {
   runApp(const DemoApp());
@@ -31,7 +31,7 @@ class DemoApp extends StatelessWidget {
           );
 
           return MaterialApp(
-            title: 'dynamic_util Example',
+            title: 'dynamic_layouts Example',
             debugShowCheckedModeBanner: false,
             // 2. Add the Debug Overlay
             builder: (context, child) => AdaptiveDebugOverlay(child: child!),
