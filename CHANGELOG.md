@@ -1,3 +1,8 @@
+## 0.2.2 - 2026-04-04
+
+* **Premium Visuals & Demos**: Massive update to `README.md` with a hero image and adaptive WebP recordings demonstrating mobile/desktop layout shifts.
+* **Documentation Assets**: Organized assets into the `doc/assets` directory for improved package distribution.
+
 ## 0.2.1 - 2026-04-04
 
 * **Metadata Fix**: Updated homepage and repository URLs in `pubspec.yaml` to point to the correct GitHub repository.
