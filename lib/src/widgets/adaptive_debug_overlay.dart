@@ -39,7 +39,7 @@ class AdaptiveDebugOverlay extends StatelessWidget {
         children: [
           child,
           const Positioned(
-            bottom: 40,
+            top: 0,
             right: 16,
             child: SafeArea(
               child: IgnorePointer(
