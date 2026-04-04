@@ -24,13 +24,13 @@ Future<T?> showAdaptiveModal<T>({
   bool isDismissible = true,
   double desktopMaxWidth = 500,
 }) {
-  final useBottomSheet = AdaptiveValue<bool>(
+  const useBottomSheet = AdaptiveValue<bool>(
     mobile: true,
     tablet: false,
     desktop: false,
-  ).resolve(context);
-
-  if (useBottomSheet) {
+  );
+  
+  if (useBottomSheet.resolve(context)) {
     return showModalBottomSheet<T>(
       context: context,
       builder: builder,

@@ -31,10 +31,10 @@ void main() {
 
       await tester.pumpWidget(
         buildTestApp(
-          layoutBuilder: () => AdaptiveLayout(
-            mobile: const Text('Mobile'),
-            tablet: const Text('Tablet'),
-            desktop: const Text('Desktop'),
+          layoutBuilder: () => const AdaptiveLayout(
+            mobile: Text('Mobile'),
+            tablet: Text('Tablet'),
+            desktop: Text('Desktop'),
           ),
         ),
       );
@@ -52,10 +52,10 @@ void main() {
 
       await tester.pumpWidget(
         buildTestApp(
-          layoutBuilder: () => AdaptiveLayout(
-            mobile: const Text('Mobile'),
-            tablet: const Text('Tablet'),
-            desktop: const Text('Desktop'),
+          layoutBuilder: () => const AdaptiveLayout(
+            mobile: Text('Mobile'),
+            tablet: Text('Tablet'),
+            desktop: Text('Desktop'),
           ),
         ),
       );
@@ -73,10 +73,10 @@ void main() {
 
       await tester.pumpWidget(
         buildTestApp(
-          layoutBuilder: () => AdaptiveLayout(
-            mobile: const Text('Mobile'),
-            tablet: const Text('Tablet'),
-            desktop: const Text('Desktop'),
+          layoutBuilder: () => const AdaptiveLayout(
+            mobile: Text('Mobile'),
+            tablet: Text('Tablet'),
+            desktop: Text('Desktop'),
           ),
         ),
       );
@@ -95,8 +95,8 @@ void main() {
 
       await tester.pumpWidget(
         buildTestApp(
-          layoutBuilder: () => AdaptiveLayout(
-            mobile: const Text('Mobile'),
+          layoutBuilder: () => const AdaptiveLayout(
+            mobile: Text('Mobile'),
           ),
         ),
       );
@@ -113,9 +113,9 @@ void main() {
 
       await tester.pumpWidget(
         buildTestApp(
-          layoutBuilder: () => AdaptiveLayout(
-            mobile: const Text('Mobile'),
-            tablet: const Text('Tablet'),
+          layoutBuilder: () => const AdaptiveLayout(
+            mobile: Text('Mobile'),
+            tablet: Text('Tablet'),
           ),
         ),
       );
@@ -132,8 +132,8 @@ void main() {
 
       await tester.pumpWidget(
         buildTestApp(
-          layoutBuilder: () => AdaptiveLayout(
-            mobile: const Text('Mobile'),
+          layoutBuilder: () => const AdaptiveLayout(
+            mobile: Text('Mobile'),
           ),
         ),
       );
@@ -151,10 +151,10 @@ void main() {
 
       await tester.pumpWidget(
         buildTestApp(
-          layoutBuilder: () => AdaptiveLayout(
-            mobile: const Text('Mobile'),
-            tablet: const Text('Tablet'),
-            desktop: const Text('Desktop'),
+          layoutBuilder: () => const AdaptiveLayout(
+            mobile: Text('Mobile'),
+            tablet: Text('Tablet'),
+            desktop: Text('Desktop'),
             breakpoints: custom,
           ),
         ),

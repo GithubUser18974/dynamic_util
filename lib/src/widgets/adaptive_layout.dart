@@ -70,14 +70,19 @@ class AdaptiveLayout extends StatelessWidget {
 
         switch (breakpoint) {
           case Breakpoint.large:
-            if (isLandscape && desktopLandscape != null)
+            if (isLandscape && desktopLandscape != null) {
               return desktopLandscape!;
+            }
             return desktop ?? tablet ?? mobile;
           case Breakpoint.medium:
-            if (isLandscape && tabletLandscape != null) return tabletLandscape!;
+            if (isLandscape && tabletLandscape != null) {
+              return tabletLandscape!;
+            }
             return tablet ?? mobile;
           case Breakpoint.small:
-            if (isLandscape && mobileLandscape != null) return mobileLandscape!;
+            if (isLandscape && mobileLandscape != null) {
+              return mobileLandscape!;
+            }
             return mobile;
         }
       },
