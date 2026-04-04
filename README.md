@@ -1,6 +1,11 @@
+
+
 # dynamic_layouts
 
 A lightweight, dependency-free Flutter package for building fluid, heavily responsive, adaptive UI rendering across mobile, tablet, and desktop screens natively. 
+
+# Github
+https://github.com/GithubUser18974/dynamic_util
 
 Built on a modern, strictly reactive `InheritedWidget` architecture (`AdaptiveScope`), it efficiently responds to window resizing, layout transitions, safe-area, and orientation constraints natively.
 
