@@ -1,0 +1,12 @@
+name: dynamic_util_example
+description: Example app demonstrating the dynamic_util package.
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dynamic_util:
+    path: ../
