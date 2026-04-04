@@ -1,4 +1,4 @@
-## 0.2.0
+## 0.2.0 - 2026-04-04
 
 * **Reactive Architecture Overhaul**: Transitioned from a strict singleton model to a fully reactive `InheritedWidget` system (`AdaptiveScope`). Layouts now safely and automatically respond to window resizing natively.
 * **Orientation & SafeArea Additions**: Added `safeScreenHeight` and `isLandscape`/`isPortrait` integrations securely avoiding notches and layout occlusions natively.
