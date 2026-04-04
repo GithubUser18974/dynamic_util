@@ -2,29 +2,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "dynamic_util_example",
-            "cwd": "dynamic_util_example",
-            "program": "lib/main.dart",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "dynamic_util_example (profile mode)",
-            "cwd": "dynamic_util_example",
-            "program": "lib/main.dart",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "dynamic_util_example (release mode)",
-            "cwd": "dynamic_util_example",
-            "program": "lib/main.dart",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
             "name": "example",
             "cwd": "example",
             "program": "lib/main.dart",

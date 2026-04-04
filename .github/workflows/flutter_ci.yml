@@ -37,7 +37,4 @@ jobs:
           cd example
           flutter pub get
           flutter analyze
-          cd ../dynamic_util_example
-          flutter pub get
-          flutter analyze
           flutter test
