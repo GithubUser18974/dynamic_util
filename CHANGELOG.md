@@ -1,3 +1,7 @@
+## 0.2.1 - 2026-04-04
+
+* **Metadata Fix**: Updated homepage and repository URLs in `pubspec.yaml` to point to the correct GitHub repository.
+
 ## 0.2.0 - 2026-04-04
 
 * **Reactive Architecture Overhaul**: Transitioned from a strict singleton model to a fully reactive `InheritedWidget` system (`AdaptiveScope`). Layouts now safely and automatically respond to window resizing natively.
