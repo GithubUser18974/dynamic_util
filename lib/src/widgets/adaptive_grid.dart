@@ -25,7 +25,15 @@ class AdaptiveGrid extends StatelessWidget {
 
   /// An [AdaptiveValue] that dictates the number of columns (cross axis count)
   /// for the respective breakpoints.
+  ///
+  /// This is used if [maxColumnWidth] is `null`.
   final AdaptiveValue<int> crossAxisCount;
+
+  /// If provided, the grid will automatically calculate [crossAxisCount]
+  /// such that each column is approximately this wide.
+  ///
+  /// Takes priority over [crossAxisCount].
+  final double? maxColumnWidth;
 
   /// The number of logical pixels between each child along the main axis.
   final double mainAxisSpacing;
@@ -59,6 +67,7 @@ class AdaptiveGrid extends StatelessWidget {
       tablet: 2,
       desktop: 4,
     ),
+    this.maxColumnWidth,
     this.mainAxisSpacing = 0.0,
     this.crossAxisSpacing = 0.0,
     this.childAspectRatio = 1.0,
@@ -70,25 +79,35 @@ class AdaptiveGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Resolve the number of columns dynamically based on the current breakpoint
-    final columns = crossAxisCount.resolve(context);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        int columns;
 
-    // Provide a safe fallback minimum of 1 column
-    final safeColumns = columns < 1 ? 1 : columns;
+        if (maxColumnWidth != null) {
+          final width = constraints.maxWidth;
+          columns = (width / maxColumnWidth!).floor();
+        } else {
+          columns = crossAxisCount.resolve(context);
+        }
 
-    return GridView.builder(
-      itemCount: itemCount,
-      scrollDirection: scrollDirection,
-      physics: physics,
-      shrinkWrap: shrinkWrap,
-      padding: padding,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: safeColumns,
-        mainAxisSpacing: mainAxisSpacing,
-        crossAxisSpacing: crossAxisSpacing,
-        childAspectRatio: childAspectRatio,
-      ),
-      itemBuilder: itemBuilder,
+        // Provide a safe fallback minimum of 1 column
+        final safeColumns = columns < 1 ? 1 : columns;
+
+        return GridView.builder(
+          itemCount: itemCount,
+          scrollDirection: scrollDirection,
+          physics: physics,
+          shrinkWrap: shrinkWrap,
+          padding: padding,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: safeColumns,
+            mainAxisSpacing: mainAxisSpacing,
+            crossAxisSpacing: crossAxisSpacing,
+            childAspectRatio: childAspectRatio,
+          ),
+          itemBuilder: itemBuilder,
+        );
+      },
     );
   }
 }

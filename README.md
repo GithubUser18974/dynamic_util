@@ -43,6 +43,8 @@ class MyApp extends StatelessWidget {
         designWidth: 375, // Your figma/design base width
         designHeight: 812 // Your figma/design base height
       ),
+      // NEW: Clamping max width for ultra-wide screens
+      maxContentWidth: 1000, 
       child: MaterialApp(
         builder: (context, child) => AdaptiveDebugOverlay(child: child!),
         home: HomeScreen(),
@@ -71,6 +73,19 @@ Container(
 > [!TIP]
 > Global static `.w`, `.h`, `.sp` variables extended on `num` are preserved for backward compatibility if you run `ScreenConfig.init()` strictly.
 
+### 3. Scaling Basis
+Choose how your dimensions scale. By default, it uses `shortestSide` (similar to `flutter_screenutil`), but you can explicitly scale by `width` or `height` for specialized designs.
+
+```dart
+AdaptiveScope(
+  config: ScreenConfig.watch(
+    context, 
+    defaultScaleBasis: ScaleBasis.width // Scale everything purely by width
+  ),
+  child: MyApp(),
+)
+```
+
 ---
 
 ## 🛠️ Feature & UI Components Matrix
@@ -88,10 +103,33 @@ final paddingLimit = const AdaptiveValue<double>(
 ```
 
 ### AdaptiveLayout
-Return entirely distinct widget blueprints depending on the bounds. Supports native fallback.
+Return entirely distinct widget blueprints depending on the bounds. Supports native fallback. Use **`AnimatedAdaptiveLayout`** for smooth cross-fades when crossing breakpoints.
 
 ### AdaptiveGrid
-Automagically scale grid layout matrices utilizing `AdaptiveValue`. Provide a responsive `crossAxisCount` resolving automatically.
+Automagically scale grid layout matrices.
+- **Breakpoint-driven**: Provide a responsive `crossAxisCount` resolving automatically via `AdaptiveValue`.
+- **Auto-calculated**: Provide a `maxColumnWidth` to let the grid calculate the columns based on available space.
+
+```dart
+AdaptiveGrid(
+  itemCount: 20,
+  maxColumnWidth: 150, // Auto-column calculation!
+  itemBuilder: (context, index) => Card(child: Text('Item $index')),
+)
+```
+
+### AnimatedAdaptiveLayout
+A drop-in replacement for `AdaptiveLayout` that provides smooth cross-fades when crossing breakpoints.
+
+```dart
+AnimatedAdaptiveLayout(
+  duration: Duration(milliseconds: 500),
+  switchInCurve: Curves.easeInOut,
+  mobile: MobileView(),
+  tablet: TabletView(),
+  desktop: DesktopView(),
+)
+```
 
 ### AdaptiveCollectionView
 Dynamically shift an axis iteration rendering natively as a `ListView` on tight mobile bounds, but elevating to a `GridView` seamlessly on tablets/desktops.

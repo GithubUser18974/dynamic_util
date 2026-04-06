@@ -1,6 +1,19 @@
 import 'package:flutter/widgets.dart';
 
-import 'adaptive_scope.dart';
+/// The basis for calculating scaling factors.
+enum ScaleBasis {
+  /// Scales based on device width relative to design width.
+  width,
+
+  /// Scales based on device height relative to design height.
+  height,
+
+  /// Scales based on whichever side has the smaller scaling factor (ideal for text).
+  shortestSide,
+
+  /// Scales based on whichever side has the larger scaling factor.
+  longestSide,
+}
 
 /// Configuration class for screen dimensions and scaling factors.
 ///
@@ -22,6 +35,9 @@ class ScreenConfig {
   /// Any safe area insets (like notches or status bars).
   final EdgeInsets safeAreaInsets;
 
+  /// The primary basis used for text and automatic scaling.
+  final ScaleBasis defaultScaleBasis;
+
   /// Creates a [ScreenConfig] with explicit dimensions.
   const ScreenConfig({
     required this.designWidth,
@@ -29,6 +45,7 @@ class ScreenConfig {
     required this.screenWidth,
     required this.screenHeight,
     this.safeAreaInsets = EdgeInsets.zero,
+    this.defaultScaleBasis = ScaleBasis.shortestSide,
   });
 
   /// Scaling factor for width-based dimensions.
@@ -43,11 +60,23 @@ class ScreenConfig {
   /// Scaling factor for height-based dimensions, aware of safe area.
   double get safeScaleHeight => safeScreenHeight / designHeight;
 
-  /// Scaling factor for text/font sizes.
-  double get scaleText =>
-      (screenWidth / designWidth) < (screenHeight / designHeight)
-          ? screenWidth / designWidth
-          : screenHeight / designHeight;
+  /// Scaling factor for text/font sizes based on [defaultScaleBasis].
+  double get scaleText => adapt(1.0, basis: defaultScaleBasis);
+
+  /// Adapts a [value] based on the specified [basis].
+  double adapt(double value, {ScaleBasis? basis}) {
+    final b = basis ?? defaultScaleBasis;
+    switch (b) {
+      case ScaleBasis.width:
+        return value * scaleWidth;
+      case ScaleBasis.height:
+        return value * scaleHeight;
+      case ScaleBasis.shortestSide:
+        return value * (scaleWidth < scaleHeight ? scaleWidth : scaleHeight);
+      case ScaleBasis.longestSide:
+        return value * (scaleWidth > scaleHeight ? scaleWidth : scaleHeight);
+    }
+  }
 
   /// Returns `true` if the device is in portrait orientation.
   bool get isPortrait => screenHeight >= screenWidth;

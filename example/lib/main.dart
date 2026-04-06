@@ -5,8 +5,19 @@ void main() {
   runApp(const DemoApp());
 }
 
-class DemoApp extends StatelessWidget {
+class DemoApp extends StatefulWidget {
   const DemoApp({super.key});
+
+  @override
+  State<DemoApp> createState() => _DemoAppState();
+}
+
+class _DemoAppState extends State<DemoApp> {
+  bool _maxContentWidthEnabled = false;
+
+  void _toggleMaxWidth(bool value) {
+    setState(() => _maxContentWidthEnabled = value);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +28,8 @@ class DemoApp extends StatelessWidget {
     // 1. Wrap your app in AdaptiveScope for reactive resizing
     return AdaptiveScope(
       config: ScreenConfig.watch(context),
+      // NEW: Demonstrate maxContentWidth clamping
+      maxContentWidth: _maxContentWidthEnabled ? 800 : null,
       child: Builder(
         builder: (context) {
           final baseLight = ThemeData(
@@ -39,7 +52,10 @@ class DemoApp extends StatelessWidget {
             theme: AdaptiveTheme.scale(context, base: baseLight),
             darkTheme: AdaptiveTheme.scale(context, base: baseDark),
             themeMode: ThemeMode.system,
-            home: const MainScreen(),
+            home: MainScreen(
+              isMaxWidthEnabled: _maxContentWidthEnabled,
+              onToggleMaxWidth: _toggleMaxWidth,
+            ),
           );
         },
       ),
@@ -51,7 +67,14 @@ class DemoApp extends StatelessWidget {
 // Main Screen — tab navigation
 // ---------------------------------------------------------------------------
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  const MainScreen({
+    super.key,
+    required this.isMaxWidthEnabled,
+    required this.onToggleMaxWidth,
+  });
+
+  final bool isMaxWidthEnabled;
+  final ValueChanged<bool> onToggleMaxWidth;
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -60,12 +83,16 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
-  final _pages = const <Widget>[
-    OverviewPage(),
-    LayoutDemoPage(),
-    CollectionDemoPage(),
-    TextDemoPage(),
-    ComponentsDemoPage(),
+  late final _pages = <Widget>[
+    const OverviewPage(),
+    const LayoutDemoPage(),
+    const CollectionDemoPage(),
+    const TextDemoPage(),
+    const ComponentsDemoPage(),
+    AdvancedDemoPage(
+      isMaxWidthEnabled: widget.isMaxWidthEnabled,
+      onToggleMaxWidth: widget.onToggleMaxWidth,
+    ),
   ];
 
   @override
@@ -98,6 +125,10 @@ class _MainScreenState extends State<MainScreen> {
         AdaptiveNavigationDestination(
           icon: Icon(Icons.widgets),
           label: 'Widgets',
+        ),
+        AdaptiveNavigationDestination(
+          icon: Icon(Icons.auto_fix_high),
+          label: 'Advanced',
         ),
       ],
       body: _pages[_currentIndex],
@@ -898,3 +929,122 @@ class _ColoredBox extends StatelessWidget {
     );
   }
 }
+
+// ---------------------------------------------------------------------------
+// Page 6 — Advanced (AnimatedLayout, MaxWidth, ScaleBasis)
+// ---------------------------------------------------------------------------
+class AdvancedDemoPage extends StatelessWidget {
+  const AdvancedDemoPage({
+    super.key,
+    required this.isMaxWidthEnabled,
+    required this.onToggleMaxWidth,
+  });
+
+  final bool isMaxWidthEnabled;
+  final ValueChanged<bool> onToggleMaxWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Advanced Layouts'), centerTitle: true),
+      body: SingleChildScrollView(
+        child: AdaptivePadding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _SectionTitle('Global Width Clamping', cs),
+              const Text(
+                'Prevent your UI from stretching excessively on ultra-wide screens '
+                'by setting a maximum content width in AdaptiveScope.',
+              ),
+              const SizedBox(height: 8),
+              SwitchListTile(
+                title: const Text('Enable Max Width (800px)'),
+                value: isMaxWidthEnabled,
+                onChanged: onToggleMaxWidth,
+                tileColor: cs.surfaceContainerHighest,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              ),
+              const AdaptiveSpacing(24),
+
+              _SectionTitle('AnimatedAdaptiveLayout', cs),
+              const Text(
+                'Smooth transitions when crossing breakpoints. Try resizing '
+                'your browser or switching landscape/portrait.',
+              ),
+              const SizedBox(height: 8),
+              SizedBox(
+                height: 200,
+                child: AnimatedAdaptiveLayout(
+                  duration: const Duration(milliseconds: 500),
+                  switchInCurve: Curves.easeInOutBack,
+                  mobile: _InfoBox('Mobile View', cs.primaryContainer, cs.onPrimaryContainer),
+                  tablet: _InfoBox('Tablet View', cs.secondaryContainer, cs.onSecondaryContainer),
+                  desktop: _InfoBox('Desktop View', cs.tertiaryContainer, cs.onTertiaryContainer),
+                ),
+              ),
+              const AdaptiveSpacing(24),
+
+              _SectionTitle('Auto-Calculating Grid', cs),
+              const Text(
+                'Instead of fixed column counts, use maxColumnWidth to let the '
+                'grid automatically fill the available space.',
+              ),
+              const SizedBox(height: 8),
+              AdaptiveContainer(
+                height: 300,
+                color: cs.surfaceContainerHighest,
+                borderRadius: 12,
+                child: AdaptiveGrid(
+                  itemCount: 20,
+                  maxColumnWidth: 150, // Auto-column calculation!
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                  padding: const EdgeInsets.all(8),
+                  itemBuilder: (context, index) => Container(
+                    decoration: BoxDecoration(
+                      color: cs.secondary.withAlpha(150),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '${index + 1}',
+                      style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _InfoBox extends StatelessWidget {
+  const _InfoBox(this.label, this.bg, this.fg);
+  final String label;
+  final Color bg;
+  final Color fg;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      key: ValueKey(label), // Important for AnimatedSwitcher to detect change
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(16)),
+      child: Center(
+        child: Text(
+          label,
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: fg),
+        ),
+      ),
+    );
+  }
+}
+

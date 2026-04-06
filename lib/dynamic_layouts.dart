@@ -42,6 +42,7 @@ export 'src/widgets/adaptive_dialog.dart';
 export 'src/widgets/adaptive_grid.dart';
 export 'src/widgets/adaptive_image.dart';
 export 'src/widgets/adaptive_layout.dart';
+export 'src/widgets/animated_adaptive_layout.dart';
 export 'src/widgets/adaptive_navigation.dart';
 export 'src/widgets/adaptive_padding.dart';
 export 'src/widgets/adaptive_sized_box.dart';

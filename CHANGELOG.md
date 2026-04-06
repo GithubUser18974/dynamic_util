@@ -1,3 +1,11 @@
+## 0.3.0 - 2026-04-06
+
+* **Animated Layouts**: Introduced `AnimatedAdaptiveLayout`, a drop-in replacement for `AdaptiveLayout` that smoothly cross-fades between widgets when crossing breakpoints. Perfect for Desktop/Web resizing.
+* **Global Width Clamping**: Added `maxContentWidth` to `AdaptiveScope`. Easily prevent your UI from stretching excessively on Ultra-wide monitors by centered-constraining the entire app content.
+* **Automatic Grid Calculation**: `AdaptiveGrid` now supports `maxColumnWidth`. Instead of fixed columns, the grid can automatically calculate how many items fit based on their desired width.
+* **Flexible Scaling Basis**: `ScreenConfig` now supports `ScaleBasis` (Width, Height, ShortestSide, LongestSide). Choose exactly how your `context.w/h/sp` scales relative to your design.
+* **Advanced Example Demo**: Added a new "Advanced" navigation tab to the example app to demonstrate these new capabilities in real-time.
+
 ## 0.2.2 - 2026-04-04
 
 * **Premium Visuals & Demos**: Massive update to `README.md` with a hero image and adaptive WebP recordings demonstrating mobile/desktop layout shifts.

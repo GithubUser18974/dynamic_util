@@ -63,29 +63,35 @@ class AdaptiveLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final width = constraints.maxWidth;
-        final breakpoint = breakpoints.breakpointForWidth(width);
-
-        final isLandscape = constraints.maxWidth > constraints.maxHeight;
-
-        switch (breakpoint) {
-          case Breakpoint.large:
-            if (isLandscape && desktopLandscape != null) {
-              return desktopLandscape!;
-            }
-            return desktop ?? tablet ?? mobile;
-          case Breakpoint.medium:
-            if (isLandscape && tabletLandscape != null) {
-              return tabletLandscape!;
-            }
-            return tablet ?? mobile;
-          case Breakpoint.small:
-            if (isLandscape && mobileLandscape != null) {
-              return mobileLandscape!;
-            }
-            return mobile;
-        }
+        return resolve(constraints);
       },
     );
+  }
+
+  /// Resolves the correct widget to display based on [constraints].
+  ///
+  /// This is used internally by [AdaptiveLayout] and [AnimatedAdaptiveLayout].
+  Widget resolve(BoxConstraints constraints) {
+    final width = constraints.maxWidth;
+    final breakpoint = breakpoints.breakpointForWidth(width);
+    final isLandscape = constraints.maxWidth > constraints.maxHeight;
+
+    switch (breakpoint) {
+      case Breakpoint.large:
+        if (isLandscape && desktopLandscape != null) {
+          return desktopLandscape!;
+        }
+        return desktop ?? tablet ?? mobile;
+      case Breakpoint.medium:
+        if (isLandscape && tabletLandscape != null) {
+          return tabletLandscape!;
+        }
+        return tablet ?? mobile;
+      case Breakpoint.small:
+        if (isLandscape && mobileLandscape != null) {
+          return mobileLandscape!;
+        }
+        return mobile;
+    }
   }
 }
