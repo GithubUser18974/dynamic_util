@@ -29,7 +29,7 @@ Future<T?> showAdaptiveModal<T>({
     tablet: false,
     desktop: false,
   );
-  
+
   if (useBottomSheet.resolve(context)) {
     return showModalBottomSheet<T>(
       context: context,

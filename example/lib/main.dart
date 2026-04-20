@@ -89,7 +89,7 @@ class _MainScreenState extends State<MainScreen> {
     const CollectionDemoPage(),
     const TextDemoPage(),
     const ComponentsDemoPage(),
-    const FormsDemoPage(), // NEW TAB 
+    const FormsDemoPage(), // NEW TAB
     AdvancedDemoPage(
       isMaxWidthEnabled: widget.isMaxWidthEnabled,
       onToggleMaxWidth: widget.onToggleMaxWidth,
@@ -806,7 +806,10 @@ class ComponentsDemoPage extends StatelessWidget {
     ).resolve(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Adaptive Components'), centerTitle: true),
+      appBar: AppBar(
+        title: const Text('Adaptive Components'),
+        centerTitle: true,
+      ),
       body: SingleChildScrollView(
         child: AdaptivePadding(
           padding: const EdgeInsets.all(20),
@@ -814,7 +817,9 @@ class ComponentsDemoPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               _SectionTitle('AdaptiveValue<int>', cs),
-              Text('Columns count: $columnsCount (resolves differently per breakpoint)'),
+              Text(
+                'Columns count: $columnsCount (resolves differently per breakpoint)',
+              ),
               const AdaptiveSpacing(16),
 
               _SectionTitle('AdaptiveWrap & AdaptiveSpacing', cs),
@@ -825,9 +830,21 @@ class ComponentsDemoPage extends StatelessWidget {
                 child: AdaptiveWrap(
                   spacing: context.w(10), // Use context.w for responsive gap
                   children: [
-                    _ColoredBox('Item 1', cs.primaryContainer, cs.onPrimaryContainer),
-                    _ColoredBox('Item 2', cs.secondaryContainer, cs.onSecondaryContainer),
-                    _ColoredBox('Item 3', cs.tertiaryContainer, cs.onTertiaryContainer),
+                    _ColoredBox(
+                      'Item 1',
+                      cs.primaryContainer,
+                      cs.onPrimaryContainer,
+                    ),
+                    _ColoredBox(
+                      'Item 2',
+                      cs.secondaryContainer,
+                      cs.onSecondaryContainer,
+                    ),
+                    _ColoredBox(
+                      'Item 3',
+                      cs.tertiaryContainer,
+                      cs.onTertiaryContainer,
+                    ),
                   ],
                 ),
               ),
@@ -850,7 +867,9 @@ class ComponentsDemoPage extends StatelessWidget {
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           const AdaptiveSpacing(8),
-                          const Text('BottomSheet on Mobile, Dialog on Desktop.'),
+                          const Text(
+                            'BottomSheet on Mobile, Dialog on Desktop.',
+                          ),
                         ],
                       ),
                     ),
@@ -861,23 +880,33 @@ class ComponentsDemoPage extends StatelessWidget {
               const AdaptiveSpacing(24),
 
               _SectionTitle('AdaptiveImage', cs),
-              const Text('Loads different assets based on breakpoints to save bandwidth.'),
+              const Text(
+                'Loads different assets based on breakpoints to save bandwidth.',
+              ),
               const AdaptiveSpacing(8),
               AdaptiveContainer(
                 height: 150,
                 color: cs.onInverseSurface,
                 borderRadius: 12,
                 child: const AdaptiveImage(
-                  mobile: NetworkImage('https://via.placeholder.com/300x150.png?text=Mobile+Image'),
-                  tablet: NetworkImage('https://via.placeholder.com/600x150.png?text=Tablet+Image'),
-                  desktop: NetworkImage('https://via.placeholder.com/1200x150.png?text=Desktop+Image'),
+                  mobile: NetworkImage(
+                    'https://via.placeholder.com/300x150.png?text=Mobile+Image',
+                  ),
+                  tablet: NetworkImage(
+                    'https://via.placeholder.com/600x150.png?text=Tablet+Image',
+                  ),
+                  desktop: NetworkImage(
+                    'https://via.placeholder.com/1200x150.png?text=Desktop+Image',
+                  ),
                   fit: BoxFit.cover,
                 ),
               ),
               const AdaptiveSpacing(24),
 
               _SectionTitle('AdaptiveGrid', cs),
-              const Text('Auto-calculates columns: 1 (Mobile), 2 (Tablet), 4 (Desktop)'),
+              const Text(
+                'Auto-calculates columns: 1 (Mobile), 2 (Tablet), 4 (Desktop)',
+              ),
               const AdaptiveSpacing(8),
               AdaptiveContainer(
                 height: 300,
@@ -928,9 +957,18 @@ class _ColoredBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: context.w(24), vertical: context.h(16)),
-      decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(8)),
-      child: Text(label, style: TextStyle(color: fg, fontWeight: FontWeight.bold)),
+      padding: EdgeInsets.symmetric(
+        horizontal: context.w(24),
+        vertical: context.h(16),
+      ),
+      decoration: BoxDecoration(
+        color: bg,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(color: fg, fontWeight: FontWeight.bold),
+      ),
     );
   }
 }
@@ -971,7 +1009,9 @@ class AdvancedDemoPage extends StatelessWidget {
                 value: isMaxWidthEnabled,
                 onChanged: onToggleMaxWidth,
                 tileColor: cs.surfaceContainerHighest,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
               const AdaptiveSpacing(24),
 
@@ -986,9 +1026,21 @@ class AdvancedDemoPage extends StatelessWidget {
                 child: AnimatedAdaptiveLayout(
                   duration: const Duration(milliseconds: 500),
                   switchInCurve: Curves.easeInOutBack,
-                  mobile: _InfoBox('Mobile View', cs.primaryContainer, cs.onPrimaryContainer),
-                  tablet: _InfoBox('Tablet View', cs.secondaryContainer, cs.onSecondaryContainer),
-                  desktop: _InfoBox('Desktop View', cs.tertiaryContainer, cs.onTertiaryContainer),
+                  mobile: _InfoBox(
+                    'Mobile View',
+                    cs.primaryContainer,
+                    cs.onPrimaryContainer,
+                  ),
+                  tablet: _InfoBox(
+                    'Tablet View',
+                    cs.secondaryContainer,
+                    cs.onSecondaryContainer,
+                  ),
+                  desktop: _InfoBox(
+                    'Desktop View',
+                    cs.tertiaryContainer,
+                    cs.onTertiaryContainer,
+                  ),
                 ),
               ),
               const AdaptiveSpacing(24),
@@ -1017,7 +1069,10 @@ class AdvancedDemoPage extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Text(
                       '${index + 1}',
-                      style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -1042,11 +1097,18 @@ class _InfoBox extends StatelessWidget {
       key: ValueKey(label), // Important for AnimatedSwitcher to detect change
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(
+        color: bg,
+        borderRadius: BorderRadius.circular(16),
+      ),
       child: Center(
         child: Text(
           label,
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: fg),
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: fg,
+          ),
         ),
       ),
     );
@@ -1098,7 +1160,7 @@ class FormsDemoPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  if (onBack != null) 
+                  if (onBack != null)
                     Align(
                       alignment: Alignment.centerLeft,
                       child: IconButton(
@@ -1106,19 +1168,19 @@ class FormsDemoPage extends StatelessWidget {
                         onPressed: onBack,
                       ),
                     ),
-                  
+
                   // Fluid Text Scaling Demonstration
                   Text(
                     selectedItem,
                     // font size fluidly scales between 24 (minWidth 375) and 40 (maxWidth 1024)
                     style: TextStyle(
-                      fontSize: context.fluid(24, 40), 
+                      fontSize: context.fluid(24, 40),
                       fontWeight: FontWeight.bold,
                       color: cs.primary,
                     ),
                   ),
                   const AdaptiveSpacing(24),
-                  
+
                   // Responsive Form Row Demonstration
                   AdaptiveContainer(
                     padding: const EdgeInsets.all(24),
@@ -1127,18 +1189,39 @@ class FormsDemoPage extends StatelessWidget {
                     child: Column(
                       children: [
                         const AdaptiveFormRow(
-                          label: Text('Full Name', style: TextStyle(fontWeight: FontWeight.bold)),
-                          input: TextField(decoration: InputDecoration(hintText: 'Enter your name')),
+                          label: Text(
+                            'Full Name',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          input: TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Enter your name',
+                            ),
+                          ),
                         ),
                         const AdaptiveSpacing(16),
                         const AdaptiveFormRow(
-                          label: Text('Email Address', style: TextStyle(fontWeight: FontWeight.bold)),
-                          input: TextField(decoration: InputDecoration(hintText: 'Enter your email')),
+                          label: Text(
+                            'Email Address',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          input: TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Enter your email',
+                            ),
+                          ),
                         ),
                         const AdaptiveSpacing(16),
                         const AdaptiveFormRow(
-                          label: Text('Phone Number', style: TextStyle(fontWeight: FontWeight.bold)),
-                          input: TextField(decoration: InputDecoration(hintText: 'Enter your phone')),
+                          label: Text(
+                            'Phone Number',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          input: TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Enter your phone',
+                            ),
+                          ),
                         ),
                         const AdaptiveSpacing(24),
                         Align(
@@ -1150,7 +1233,7 @@ class FormsDemoPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

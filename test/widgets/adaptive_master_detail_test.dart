@@ -58,8 +58,8 @@ void main() {
                   onPressed: () => onSelect('Item 1'),
                   child: const Text('Select Item'),
                 ),
-                detailBuilder: (context, selectedItem, {VoidCallback? onBack}) =>
-                    Column(
+                detailBuilder:
+                    (context, selectedItem, {VoidCallback? onBack}) => Column(
                   children: [
                     Text('Detail: $selectedItem'),
                     if (onBack != null)

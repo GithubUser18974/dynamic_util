@@ -86,10 +86,12 @@ void main() {
       expect(16.0.sp, 16.0);
     });
 
-    testWidgets('.fluid interpolates correctly between min and max widths', (tester) async {
+    testWidgets('.fluid interpolates correctly between min and max widths',
+        (tester) async {
       await tester.pumpWidget(
         MediaQuery(
-          data: const MediaQueryData(size: Size(700, 812)), // Midpoint between 375 and 1025
+          data: const MediaQueryData(
+              size: Size(700, 812)), // Midpoint between 375 and 1025
           child: Builder(
             builder: (context) {
               ScreenConfig.init(context, designWidth: 375, designHeight: 812);

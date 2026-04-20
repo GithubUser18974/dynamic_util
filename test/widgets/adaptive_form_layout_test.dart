@@ -21,9 +21,10 @@ void main() {
 
       // Verify that it uses a Row layout (Row exists in the tree)
       expect(find.byType(Row), findsWidgets);
-      
+
       // Specifically look for the Expanded widgets defining the flex
-      final expandedWidgets = tester.widgetList<Expanded>(find.byType(Expanded));
+      final expandedWidgets =
+          tester.widgetList<Expanded>(find.byType(Expanded));
       expect(expandedWidgets.length, 2);
       expect(expandedWidgets.elementAt(0).flex, 1); // Label flex
       expect(expandedWidgets.elementAt(1).flex, 2); // Input flex
@@ -47,7 +48,7 @@ void main() {
       // Should render as a column
       final columnFinder = find.byType(Column);
       expect(columnFinder, findsOneWidget);
-      
+
       // Label should be above input
       final column = tester.widget<Column>(columnFinder);
       expect(column.crossAxisAlignment, CrossAxisAlignment.start);
