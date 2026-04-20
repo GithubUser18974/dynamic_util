@@ -89,6 +89,7 @@ class _MainScreenState extends State<MainScreen> {
     const CollectionDemoPage(),
     const TextDemoPage(),
     const ComponentsDemoPage(),
+    const FormsDemoPage(), // NEW TAB 
     AdvancedDemoPage(
       isMaxWidthEnabled: widget.isMaxWidthEnabled,
       onToggleMaxWidth: widget.onToggleMaxWidth,
@@ -125,6 +126,10 @@ class _MainScreenState extends State<MainScreen> {
         AdaptiveNavigationDestination(
           icon: Icon(Icons.widgets),
           label: 'Widgets',
+        ),
+        AdaptiveNavigationDestination(
+          icon: Icon(Icons.dynamic_form),
+          label: 'Forms',
         ),
         AdaptiveNavigationDestination(
           icon: Icon(Icons.auto_fix_high),
@@ -1048,3 +1053,110 @@ class _InfoBox extends StatelessWidget {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Page 7 — Forms & Master Detail (Responsive Forms & Fluid Scaling)
+// ---------------------------------------------------------------------------
+class FormsDemoPage extends StatelessWidget {
+  const FormsDemoPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Forms & Data'), centerTitle: true),
+      body: AdaptiveMasterDetail<String>(
+        breakpoint: BreakpointConfig.material3().smallMax,
+        initialSelection: 'User Profile',
+        masterBuilder: (context, onSelect) => ListView(
+          children: [
+            ListTile(
+              leading: Icon(Icons.person, color: cs.primary),
+              title: const Text('User Profile'),
+              onTap: () => onSelect('User Profile'),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings, color: cs.primary),
+              title: const Text('Security Settings'),
+              onTap: () => onSelect('Security Settings'),
+            ),
+            ListTile(
+              leading: Icon(Icons.notifications, color: cs.primary),
+              title: const Text('Notifications'),
+              onTap: () => onSelect('Notifications'),
+            ),
+          ],
+        ),
+        detailBuilder: (context, selectedItem, {onBack}) {
+          if (selectedItem == null) {
+            return const Center(child: Text('Select an item from the list.'));
+          }
+
+          return SingleChildScrollView(
+            child: AdaptivePadding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (onBack != null) 
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: IconButton(
+                        icon: const Icon(Icons.arrow_back),
+                        onPressed: onBack,
+                      ),
+                    ),
+                  
+                  // Fluid Text Scaling Demonstration
+                  Text(
+                    selectedItem,
+                    // font size fluidly scales between 24 (minWidth 375) and 40 (maxWidth 1024)
+                    style: TextStyle(
+                      fontSize: context.fluid(24, 40), 
+                      fontWeight: FontWeight.bold,
+                      color: cs.primary,
+                    ),
+                  ),
+                  const AdaptiveSpacing(24),
+                  
+                  // Responsive Form Row Demonstration
+                  AdaptiveContainer(
+                    padding: const EdgeInsets.all(24),
+                    borderRadius: 16,
+                    color: cs.surfaceContainerHighest,
+                    child: Column(
+                      children: [
+                        const AdaptiveFormRow(
+                          label: Text('Full Name', style: TextStyle(fontWeight: FontWeight.bold)),
+                          input: TextField(decoration: InputDecoration(hintText: 'Enter your name')),
+                        ),
+                        const AdaptiveSpacing(16),
+                        const AdaptiveFormRow(
+                          label: Text('Email Address', style: TextStyle(fontWeight: FontWeight.bold)),
+                          input: TextField(decoration: InputDecoration(hintText: 'Enter your email')),
+                        ),
+                        const AdaptiveSpacing(16),
+                        const AdaptiveFormRow(
+                          label: Text('Phone Number', style: TextStyle(fontWeight: FontWeight.bold)),
+                          input: TextField(decoration: InputDecoration(hintText: 'Enter your phone')),
+                        ),
+                        const AdaptiveSpacing(24),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: const Text('Save Changes'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}

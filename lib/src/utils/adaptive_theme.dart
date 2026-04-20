@@ -38,10 +38,10 @@ class AdaptiveTheme {
       textTheme: _scaleTextTheme(base.textTheme, textScale),
       primaryTextTheme: _scaleTextTheme(base.primaryTextTheme, textScale),
       iconTheme: base.iconTheme.copyWith(
-        size: (base.iconTheme.size ?? 24) * widthScale,
+        size: (base.iconTheme.size ?? 24) * textScale,
       ),
       primaryIconTheme: base.primaryIconTheme.copyWith(
-        size: (base.primaryIconTheme.size ?? 24) * widthScale,
+        size: (base.primaryIconTheme.size ?? 24) * textScale,
       ),
     );
   }

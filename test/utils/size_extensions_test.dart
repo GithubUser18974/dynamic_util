@@ -85,5 +85,55 @@ void main() {
       expect(16.sp, 16.0);
       expect(16.0.sp, 16.0);
     });
+
+    testWidgets('.fluid interpolates correctly between min and max widths', (tester) async {
+      await tester.pumpWidget(
+        MediaQuery(
+          data: const MediaQueryData(size: Size(700, 812)), // Midpoint between 375 and 1025
+          child: Builder(
+            builder: (context) {
+              ScreenConfig.init(context, designWidth: 375, designHeight: 812);
+              return const SizedBox.shrink();
+            },
+          ),
+        ),
+      );
+
+      // Width ranges from minWidth=375 to maxWidth=1025
+      // 700 is exactly in the middle of 375 and 1025. 1025 - 375 = 650. 700 - 375 = 325.
+      // Fraction = 325/650 = 0.5
+      // fluid(16, 24) -> 16 + (24-16)*0.5 -> 16 + 4 = 20
+      expect(16.fluid(24, minWidth: 375, maxWidth: 1025), 20.0);
+    });
+
+    testWidgets('.fluid clamps to min and max', (tester) async {
+      await tester.pumpWidget(
+        MediaQuery(
+          data: const MediaQueryData(size: Size(200, 812)), // Below min
+          child: Builder(
+            builder: (context) {
+              ScreenConfig.init(context, designWidth: 375, designHeight: 812);
+              return const SizedBox.shrink();
+            },
+          ),
+        ),
+      );
+
+      expect(16.fluid(24, minWidth: 375, maxWidth: 1025), 16.0);
+
+      await tester.pumpWidget(
+        MediaQuery(
+          data: const MediaQueryData(size: Size(1200, 812)), // Above max
+          child: Builder(
+            builder: (context) {
+              ScreenConfig.init(context, designWidth: 375, designHeight: 812);
+              return const SizedBox.shrink();
+            },
+          ),
+        ),
+      );
+
+      expect(16.fluid(24, minWidth: 375, maxWidth: 1025), 24.0);
+    });
   });
 }

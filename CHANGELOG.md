@@ -1,3 +1,9 @@
+## 0.4.0 - 2026-04-20
+
+* **Fluid Scaling**: Introduced `.fluid(min, max)` extension on both `num` and `BuildContext`. This allows seamless interpolation of sizes (like padding and text) between defined width breakpoints, eliminating jarring jumps in UI scaling.
+* **Adaptive Master-Detail**: Added `AdaptiveMasterDetail<T>`, a robust widget that handles split-view logic on wide screens and stateful layered navigation on small screens automatically, without enforcing a hard dependency on custom app routers.
+* **Responsive Forms**: Introduced `AdaptiveFormRow`, which cleanly stacks forms vertically on mobile devices while spreading them laterally into responsive grid alignments on desktops.
+
 ## 0.3.0 - 2026-04-06
 
 * **Animated Layouts**: Introduced `AnimatedAdaptiveLayout`, a drop-in replacement for `AdaptiveLayout` that smoothly cross-fades between widgets when crossing breakpoints. Perfect for Desktop/Web resizing.

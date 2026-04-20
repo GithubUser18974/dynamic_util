@@ -34,6 +34,18 @@ extension AdaptiveSize on num {
   /// `min(scaleWidth, scaleHeight)` to prevent text from becoming
   /// disproportionately large.
   double get sp => toDouble() * ScreenConfig.instance.scaleText;
+
+  /// Fluidly scales the value up to [max] between [minWidth] and [maxWidth].
+  ///
+  /// Uses the global [ScreenConfig.instance].
+  double fluid(num max, {num minWidth = 375, num maxWidth = 1024}) {
+    final screenWidth = ScreenConfig.instance.screenWidth;
+    if (screenWidth <= minWidth) return toDouble();
+    if (screenWidth >= maxWidth) return max.toDouble();
+
+    final fraction = (screenWidth - minWidth) / (maxWidth - minWidth);
+    return toDouble() + (max - toDouble()) * fraction;
+  }
 }
 
 /// Extension methods on [BuildContext] for adaptive sizing that responds to
@@ -55,4 +67,16 @@ extension AdaptiveSizeContext on BuildContext {
 
   /// Returns a font-scaled value that auto-updates if inside an [AdaptiveScope].
   double sp(num value) => value.toDouble() * AdaptiveScope.of(this).scaleText;
+
+  /// Fluidly scales a value between [min] and [max] based on current screen width.
+  ///
+  /// Smoothly interpolates the size as the screen expands from [minWidth] to [maxWidth].
+  double fluid(num min, num max, {num minWidth = 375, num maxWidth = 1024}) {
+    final screenWidth = AdaptiveScope.of(this).screenWidth;
+    if (screenWidth <= minWidth) return min.toDouble();
+    if (screenWidth >= maxWidth) return max.toDouble();
+
+    final fraction = (screenWidth - minWidth) / (maxWidth - minWidth);
+    return min.toDouble() + (max - min).toDouble() * fraction;
+  }
 }
