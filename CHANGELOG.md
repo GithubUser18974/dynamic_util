@@ -1,3 +1,11 @@
+## 0.4.2 - 2026-04-28
+* Update Readme 
+* Add pubspec.yaml
+
+## 0.4.1 - 2026-04-28
+* Update Readme 
+* Add pubspec.yaml
+
 ## 0.4.0 - 2026-04-20
 
 * **Fluid Scaling**: Introduced `.fluid(min, max)` extension on both `num` and `BuildContext`. This allows seamless interpolation of sizes (like padding and text) between defined width breakpoints, eliminating jarring jumps in UI scaling.
