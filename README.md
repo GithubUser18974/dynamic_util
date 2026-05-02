@@ -86,7 +86,21 @@ AdaptiveScope(
 )
 ```
 
+### 4. Fluid Scaling (No Breakpoint Jumps)
+If you prefer smooth, linear scaling instead of stepping through breakpoints, use the `.fluid()` extension. It smoothly interpolates a value based on the current screen width.
+
+```dart
+Text(
+  'Fluid Text',
+  style: TextStyle(
+    // Scales smoothly from 16px to 32px as screen width increases
+    fontSize: context.fluid(16, 32), 
+  ),
+)
+```
+
 ---
+
 
 ## 🛠️ Feature & UI Components Matrix
 
@@ -134,11 +148,47 @@ AnimatedAdaptiveLayout(
 ### AdaptiveCollectionView
 Dynamically shift an axis iteration rendering natively as a `ListView` on tight mobile bounds, but elevating to a `GridView` seamlessly on tablets/desktops.
 
+### AdaptiveSliverGrid
+A sliver equivalent of `AdaptiveGrid`. Perfect for complex scrolling layouts inside a `CustomScrollView`. Automatically handles columns via `crossAxisCount` or `maxColumnWidth`.
+
+```dart
+CustomScrollView(
+  slivers: [
+    AdaptiveSliverGrid(
+      itemCount: 20,
+      maxColumnWidth: 200, // Scales nicely across any device
+      itemBuilder: (context, index) => Card(child: Text('Item $index')),
+    ),
+  ],
+)
+```
+
 ### AdaptiveWrap
 Flipping between vertical `Column`s and horizontal `Row`s seamlessly based on a specified breakpoint target.
 
+### AdaptiveMasterDetail
+A robust two-pane layout system.
+- **Mobile**: Stacks views and handles stateful layered navigation (drilling down).
+- **Tablet/Desktop**: Splits the screen side-by-side without needing a custom router.
+
+### AdaptiveFormRow
+Designed specifically for inputs. Stacks form fields vertically on mobile, but spreads them laterally into responsive grid alignments on desktops.
+
 ### AdaptiveNavigationScaffold
-An intelligent `Scaffold` that renders a native `BottomNavigationBar` on smaller screens, instantly snapping into a `NavigationRail` or native `Drawer` on Desktop limits.
+An intelligent `Scaffold` that renders a native `BottomNavigationBar` on smaller screens, instantly snapping into a `NavigationRail` on Desktop limits.
+
+### AdaptiveDrawerScaffold
+A Scaffold designed for complex desktop apps that use a sidebar.
+- **Mobile**: Acts as a standard modal `Drawer` hidden behind a hamburger menu.
+- **Tablet/Desktop**: The drawer is permanently "docked" as a fixed side-pane next to your main content.
+
+```dart
+AdaptiveDrawerScaffold(
+  drawer: CustomSidebarWidget(),
+  appBar: AppBar(title: Text('Dashboard')),
+  body: MainContentWidget(),
+)
+```
 
 ---
 

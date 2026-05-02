@@ -1,3 +1,8 @@
+## 0.5.0 - 2026-05-02
+
+* **Advanced Desktop Scaffolding**: Introduced `AdaptiveDrawerScaffold`. This scaffold intelligently places a drawer based on screen size: it acts as a standard modal drawer on mobile, and becomes a permanently docked side pane on tablet/desktop.
+* **Adaptive Slivers**: Added `AdaptiveSliverGrid`, a sliver equivalent of `AdaptiveGrid` that automatically adjusts its `crossAxisCount` based on breakpoints or `maxColumnWidth`, perfect for `CustomScrollView` implementations.
+
 ## 0.4.2 - 2026-04-28
 * Update Readme 
 * Add pubspec.yaml
