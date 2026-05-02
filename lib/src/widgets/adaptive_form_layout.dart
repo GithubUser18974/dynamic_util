@@ -54,7 +54,7 @@ class AdaptiveFormRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.sizeOf(context).width;
     final switchBreakpoint =
-        breakpoint ?? BreakpointConfig.material3().smallMax;
+        breakpoint ?? const BreakpointConfig.material3().smallMax;
 
     if (screenWidth >= switchBreakpoint) {
       // Desktop / Tablet layout

@@ -71,7 +71,7 @@ class _AdaptiveMasterDetailState<T> extends State<AdaptiveMasterDetail<T>> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.sizeOf(context).width;
     final splitThreshold =
-        widget.breakpoint ?? BreakpointConfig.material3().smallMax;
+        widget.breakpoint ?? const BreakpointConfig.material3().smallMax;
 
     final isDesktop = screenWidth >= splitThreshold;
 

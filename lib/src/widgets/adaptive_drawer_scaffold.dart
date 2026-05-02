@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../core/breakpoints.dart';
-import '../core/screen_config.dart';
 
 /// A Scaffold that manages a drawer's presentation based on the screen breakpoint.
 ///

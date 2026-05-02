@@ -32,7 +32,6 @@ class AdaptiveTheme {
   static ThemeData scale(BuildContext context, {required ThemeData base}) {
     final config = AdaptiveScope.of(context);
     final textScale = config.scaleText;
-    final widthScale = config.scaleWidth;
 
     return base.copyWith(
       textTheme: _scaleTextTheme(base.textTheme, textScale),
