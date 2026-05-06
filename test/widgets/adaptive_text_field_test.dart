@@ -50,7 +50,8 @@ void main() {
       );
     });
 
-    testWidgets('creates TextFormField when using .form constructor', (tester) async {
+    testWidgets('creates TextFormField when using .form constructor',
+        (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(

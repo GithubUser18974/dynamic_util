@@ -57,7 +57,8 @@ class AdaptiveTextField extends StatelessWidget {
     final isDesktop = screenWidth >= switchBreakpoint;
 
     // Resolve the decoration with adaptive density
-    InputDecoration effectiveDecoration = (decoration ?? const InputDecoration()).copyWith(
+    InputDecoration effectiveDecoration =
+        (decoration ?? const InputDecoration()).copyWith(
       isDense: isDesktop,
       contentPadding: isDesktop
           ? const EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0)

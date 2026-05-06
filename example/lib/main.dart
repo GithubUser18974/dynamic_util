@@ -90,6 +90,7 @@ class _MainScreenState extends State<MainScreen> {
     const TextDemoPage(),
     const ComponentsDemoPage(),
     const FormsDemoPage(), // NEW TAB
+    const AdvancedFormsDemoPage(),
     AdvancedDemoPage(
       isMaxWidthEnabled: widget.isMaxWidthEnabled,
       onToggleMaxWidth: widget.onToggleMaxWidth,
@@ -130,6 +131,10 @@ class _MainScreenState extends State<MainScreen> {
         AdaptiveNavigationDestination(
           icon: Icon(Icons.dynamic_form),
           label: 'Forms',
+        ),
+        AdaptiveNavigationDestination(
+          icon: Icon(Icons.keyboard),
+          label: 'Inputs',
         ),
         AdaptiveNavigationDestination(
           icon: Icon(Icons.auto_fix_high),
@@ -1245,10 +1250,11 @@ class FormsDemoPage extends StatelessWidget {
 }
 
 // ---------------------------------------------------------------------------
-// Page 6 — Forms Demo Page
 // ---------------------------------------------------------------------------
-class FormsDemoPage extends StatelessWidget {
-  const FormsDemoPage({super.key});
+// Page 8 — Advanced Forms Demo Page
+// ---------------------------------------------------------------------------
+class AdvancedFormsDemoPage extends StatelessWidget {
+  const AdvancedFormsDemoPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -1272,7 +1278,7 @@ class FormsDemoPage extends StatelessWidget {
                 'will also become more compact on desktop.',
               ),
               const SizedBox(height: 32),
-              
+
               // 1. Email Field
               AdaptiveFormRow(
                 label: const Text('Email Address'),
@@ -1285,7 +1291,7 @@ class FormsDemoPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-              
+
               // 2. Password Field
               AdaptiveFormRow(
                 label: const Text('Password'),
@@ -1298,7 +1304,7 @@ class FormsDemoPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              
+
               // 3. Submit Button
               AdaptiveFormSubmit(
                 child: FilledButton(
@@ -1308,7 +1314,10 @@ class FormsDemoPage extends StatelessWidget {
                     );
                   },
                   child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 24.0,
+                      vertical: 12.0,
+                    ),
                     child: Text('Submit Form'),
                   ),
                 ),
