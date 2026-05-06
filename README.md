@@ -4,6 +4,14 @@
 [![Pub Version](https://img.shields.io/pub/v/dynamic_layouts)](https://pub.dev/packages/dynamic_layouts)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+<div align="center">
+  <a href="mailto:mohamedaraby1296@gmail.com"><img src="https://img.icons8.com/color/48/000000/gmail-new.png" width="30" height="30" alt="Email"/></a>&nbsp;&nbsp;
+  <a href="https://linkedin.com/in/mohamed-araby"><img src="https://img.icons8.com/color/48/000000/linkedin.png" width="30" height="30" alt="LinkedIn"/></a>&nbsp;&nbsp;
+  <a href="https://github.com/GithubUser18974"><img src="https://img.icons8.com/fluency/48/000000/github.png" width="30" height="30" alt="Github"/></a>&nbsp;&nbsp;
+  <a href="https://freelancer.com/u/mohamed1araby"><img src="https://img.icons8.com/color/48/000000/freelancer.png" width="30" height="30" alt="Freelancer"/></a>&nbsp;&nbsp;
+  <a href="https://wa.me/201099057109"><img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" width="30" height="30" alt="WhatsApp"/></a>
+</div>
+
 ![Dynamic Layouts Hero](doc/assets/hero.png)
 
 A lightweight, dependency-free Flutter package for building fluid, heavily responsive, adaptive UI rendering across mobile, tablet, and desktop screens natively. 
