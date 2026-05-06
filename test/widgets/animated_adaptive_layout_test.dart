@@ -8,7 +8,7 @@ void main() {
       await tester.pumpWidget(
         const Directionality(
           textDirection: TextDirection.ltr,
-          child: const AnimatedAdaptiveLayout(
+          child:  AnimatedAdaptiveLayout(
             duration: Duration(milliseconds: 200),
             mobile: Text('Mobile', key: ValueKey('mobile')),
             tablet: Text('Tablet', key: ValueKey('tablet')),

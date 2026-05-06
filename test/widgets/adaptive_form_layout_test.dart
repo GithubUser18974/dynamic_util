@@ -6,13 +6,13 @@ void main() {
   group('AdaptiveFormRow', () {
     testWidgets('renders Row on wide screens', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: MediaQuery(
-              data: const MediaQueryData(size: Size(1000, 800)), // Desktop
+              data: MediaQueryData(size: Size(1000, 800)), // Desktop
               child: AdaptiveFormRow(
-                label: const Text('My Label'),
-                input: const TextField(),
+                label: Text('My Label'),
+                input: TextField(),
               ),
             ),
           ),
@@ -32,13 +32,13 @@ void main() {
 
     testWidgets('renders Column on small screens', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: MediaQuery(
-              data: const MediaQueryData(size: Size(400, 800)), // Mobile
+              data: MediaQueryData(size: Size(400, 800)), // Mobile
               child: AdaptiveFormRow(
-                label: const Text('My Label'),
-                input: const TextField(),
+                label: Text('My Label'),
+                input: TextField(),
               ),
             ),
           ),
