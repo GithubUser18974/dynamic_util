@@ -1,3 +1,9 @@
+## 0.6.0 - 2026-05-03
+
+* **Advanced Form Additions**: Introduced `AdaptiveTextField` and `AdaptiveFormSubmit`.
+  * `AdaptiveTextField` automatically adjusts its internal `InputDecoration` to be spacious on mobile (for better touch targets) and compact on desktop (`isDense = true`).
+  * `AdaptiveFormSubmit` intelligently spans the full width of the screen on mobile, while shrinking and aligning to the trailing edge on desktop forms.
+
 ## 0.5.0 - 2026-05-02
 
 * **Advanced Desktop Scaffolding**: Introduced `AdaptiveDrawerScaffold`. This scaffold intelligently places a drawer based on screen size: it acts as a standard modal drawer on mobile, and becomes a permanently docked side pane on tablet/desktop.

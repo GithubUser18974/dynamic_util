@@ -171,9 +171,24 @@ A robust two-pane layout system.
 - **Mobile**: Stacks views and handles stateful layered navigation (drilling down).
 - **Tablet/Desktop**: Splits the screen side-by-side without needing a custom router.
 
-### AdaptiveFormRow
-Designed specifically for inputs. Stacks form fields vertically on mobile, but spreads them laterally into responsive grid alignments on desktops.
+### Adaptive Forms Suite
+A collection of widgets specifically designed to make data-entry responsive and native-feeling.
 
+- **`AdaptiveFormRow`**: Stacks form fields vertically on mobile, but spreads them laterally into responsive grid alignments on desktops.
+- **`AdaptiveTextField`**: Automatically adjusts its internal `InputDecoration` to be spacious on mobile (large touch targets) and compact on desktop (`isDense = true`).
+- **`AdaptiveFormSubmit`**: A button wrapper that spans `double.infinity` width on mobile, but gracefully shrinks and aligns to the trailing edge on desktop.
+
+```dart
+AdaptiveFormRow(
+  label: Text('Email Address'),
+  input: AdaptiveTextField.form( // Automatically scales density!
+    decoration: InputDecoration(hintText: 'user@example.com'),
+  ),
+),
+AdaptiveFormSubmit(
+  child: FilledButton(onPressed: () {}, child: Text('Submit')),
+)
+```
 ### AdaptiveNavigationScaffold
 An intelligent `Scaffold` that renders a native `BottomNavigationBar` on smaller screens, instantly snapping into a `NavigationRail` on Desktop limits.
 
