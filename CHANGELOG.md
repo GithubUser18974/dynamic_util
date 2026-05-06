@@ -1,3 +1,9 @@
+## 0.7.0 - 2026-05-06
+
+* **Keyboard & Safe Area Intelligence**: Introduced `AdaptiveSafeArea` and `AdaptiveKeyboardAvoider`.
+  * `AdaptiveSafeArea` acts as a normal `SafeArea` on mobile to dodge notches, but intelligently bypasses itself on web/desktop to prevent unnecessary padding.
+  * `AdaptiveKeyboardAvoider` applies `MediaQuery.viewInsets.bottom` padding only on mobile touch devices when the software keyboard opens, allowing you to use `resizeToAvoidBottomInset: false` on your Scaffolds while still protecting specific scrollable areas.
+
 ## 0.6.1 - 2026-05-06
 
 * **Docs**: Added social contact links to `README.md`.

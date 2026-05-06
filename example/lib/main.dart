@@ -1260,69 +1260,72 @@ class AdvancedFormsDemoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Adaptive Forms')),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24.0),
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 800),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Adaptive Form Elements',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'Resize the window to see AdaptiveFormRow stack vertically '
-                'on mobile and align horizontally on desktop. AdaptiveTextField '
-                'will also become more compact on desktop.',
-              ),
-              const SizedBox(height: 32),
-
-              // 1. Email Field
-              AdaptiveFormRow(
-                label: const Text('Email Address'),
-                input: const AdaptiveTextField.form(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'user@example.com',
-                  ),
-                  keyboardType: TextInputType.emailAddress,
+      body: AdaptiveKeyboardAvoider(
+        extraPadding: 20.0,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24.0),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 800),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Adaptive Form Elements',
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
-              ),
-              const SizedBox(height: 24),
-
-              // 2. Password Field
-              AdaptiveFormRow(
-                label: const Text('Password'),
-                input: const AdaptiveTextField.form(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter your password',
-                  ),
-                  obscureText: true,
+                const SizedBox(height: 8),
+                const Text(
+                  'Resize the window to see AdaptiveFormRow stack vertically '
+                  'on mobile and align horizontally on desktop. AdaptiveTextField '
+                  'will also become more compact on desktop.',
                 ),
-              ),
-              const SizedBox(height: 32),
+                const SizedBox(height: 32),
 
-              // 3. Submit Button
-              AdaptiveFormSubmit(
-                child: FilledButton(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Form Submitted!')),
-                    );
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 24.0,
-                      vertical: 12.0,
+                // 1. Email Field
+                AdaptiveFormRow(
+                  label: const Text('Email Address'),
+                  input: const AdaptiveTextField.form(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'user@example.com',
                     ),
-                    child: Text('Submit Form'),
+                    keyboardType: TextInputType.emailAddress,
                   ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 24),
+
+                // 2. Password Field
+                AdaptiveFormRow(
+                  label: const Text('Password'),
+                  input: const AdaptiveTextField.form(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter your password',
+                    ),
+                    obscureText: true,
+                  ),
+                ),
+                const SizedBox(height: 32),
+
+                // 3. Submit Button
+                AdaptiveFormSubmit(
+                  child: FilledButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Form Submitted!')),
+                      );
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 24.0,
+                        vertical: 12.0,
+                      ),
+                      child: Text('Submit Form'),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

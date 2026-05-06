@@ -4,12 +4,15 @@
 [![Pub Version](https://img.shields.io/pub/v/dynamic_layouts)](https://pub.dev/packages/dynamic_layouts)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-<div align="center">
+      <div>
+        <h2>Contact Me</h2>
+      <div align="center">
   <a href="mailto:mohamedaraby1296@gmail.com"><img src="https://img.icons8.com/color/48/000000/gmail-new.png" width="30" height="30" alt="Email"/></a>&nbsp;&nbsp;
   <a href="https://linkedin.com/in/mohamed-araby"><img src="https://img.icons8.com/color/48/000000/linkedin.png" width="30" height="30" alt="LinkedIn"/></a>&nbsp;&nbsp;
   <a href="https://github.com/GithubUser18974"><img src="https://img.icons8.com/fluency/48/000000/github.png" width="30" height="30" alt="Github"/></a>&nbsp;&nbsp;
-  <a href="https://freelancer.com/u/mohamed1araby"><img src="https://img.icons8.com/color/48/000000/freelancer.png" width="30" height="30" alt="Freelancer"/></a>&nbsp;&nbsp;
+  <a href="https://freelancer.com/u/mohamed1araby"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdOFkJdONNVcgQtzjt6LkFzmz2xw8j1N8NeQ&s" width="110" height="30" alt="Freelancer"/></a>&nbsp;&nbsp;
   <a href="https://wa.me/201099057109"><img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" width="30" height="30" alt="WhatsApp"/></a>
+</div>
 </div>
 
 ![Dynamic Layouts Hero](doc/assets/hero.png)
@@ -197,6 +200,13 @@ AdaptiveFormSubmit(
   child: FilledButton(onPressed: () {}, child: Text('Submit')),
 )
 ```
+
+### Keyboard & Safe Area Intelligence
+These wrappers solve common mobile-specific pain points while gracefully getting out of the way on desktop and web environments.
+
+- **`AdaptiveSafeArea`**: Acts as a normal `SafeArea` on mobile to dodge notches, but intelligently bypasses itself on web/desktop to prevent unnecessary padding.
+- **`AdaptiveKeyboardAvoider`**: Applies `MediaQuery.viewInsets.bottom` padding only on mobile touch devices when the software keyboard opens, allowing you to use `resizeToAvoidBottomInset: false` on your Scaffolds while still protecting specific scrollable areas.
+
 ### AdaptiveNavigationScaffold
 An intelligent `Scaffold` that renders a native `BottomNavigationBar` on smaller screens, instantly snapping into a `NavigationRail` on Desktop limits.
 
