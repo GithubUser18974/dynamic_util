@@ -24,12 +24,13 @@ void main() {
         matching: find.byType(SizedBox),
       );
 
-      expect(sizedBoxFinder, findsWidgets); // There might be multiple SizedBoxes, but the first one from our widget should be full width.
-      
+      expect(sizedBoxFinder,
+          findsWidgets); // There might be multiple SizedBoxes, but the first one from our widget should be full width.
+
       // Let's specifically find the SizedBox that wraps our child.
       final SizedBox sizedBox = tester.widget(sizedBoxFinder.first);
       expect(sizedBox.width, double.infinity);
-      
+
       expect(find.byType(Align), findsNothing);
     });
 

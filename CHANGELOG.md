@@ -1,3 +1,7 @@
+## 0.6.1 - 2026-05-06
+
+* **Docs**: Added social contact links to `README.md`.
+
 ## 0.6.0 - 2026-05-03
 
 * **Advanced Form Additions**: Introduced `AdaptiveTextField` and `AdaptiveFormSubmit`.
