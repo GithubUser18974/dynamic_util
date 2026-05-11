@@ -13,7 +13,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: MediaQuery(
-            data: const MediaQueryData(
+            data: MediaQueryData(
               size: Size(400, 800),
               viewInsets: EdgeInsets.only(bottom: 250.0), // Simulate keyboard
             ),
@@ -45,7 +45,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: MediaQuery(
-            data: const MediaQueryData(
+            data: MediaQueryData(
               size: Size(1200, 800),
               viewInsets: EdgeInsets.only(bottom: 250.0), // Simulate keyboard
             ),
